@@ -19,3 +19,5 @@
   - Ball : 볼 그리기 및 볼 움직임 함수
   - Loop : 캔버스 및 볼을 실제로 그리는 클래스
   - BallGenerator : 볼에 필요한 속성 및 함수를 가진 클래스
+
+<img src="https://github.com/Bigone0617/bounce_balls/blob/master/public/bounceBall.gif"/>
