@@ -36,7 +36,7 @@ var Ball = /** @class */ (function () {
         context.fill();
     };
     // 볼 움직임
-    Ball.prototype.move = function (ball_list) {
+    Ball.prototype.move = function (ballList) {
         // 캔버스 벽에 부딪혔을 때 로직 Start
         if ((this.x + this.size) > this.canvas.getElment().width || (this.x + this.velX) < this.size) {
             this.velX = -(this.velX);
@@ -46,17 +46,17 @@ var Ball = /** @class */ (function () {
         }
         // 캔버스 벽에 부딪혔을 때 로직 End
         // 다른 공과 부딪혔을 때 로직 Start
-        for (var _i = 0, ball_list_1 = ball_list; _i < ball_list_1.length; _i++) {
-            var ball = ball_list_1[_i];
+        for (var _i = 0, ballList_1 = ballList; _i < ballList_1.length; _i++) {
+            var ball = ballList_1[_i];
             if (this.idx != ball.idx) {
                 var distancX = Math.pow(this.x - ball.x, 2);
                 var distancY = Math.pow(this.y - ball.y, 2);
-                var move_obj = {
+                var moveObj = {
                     MoveBetween: Math.sqrt(distancX + distancY),
                     Between: this.size + ball.size
                 };
                 // 탄성출동 로직은 구현하지 못함.
-                if (move_obj.MoveBetween <= move_obj.Between) {
+                if (moveObj.MoveBetween <= moveObj.Between) {
                     var changeX = this.velX;
                     var changeY = this.velY;
                     this.velX = ball.velX;
@@ -81,11 +81,11 @@ var Loop = /** @class */ (function () {
     Loop.prototype.start = function () {
         this.canvas.getContext().fillStyle = "rgba(255,255,255,0.7)";
         this.canvas.getContext().fillRect(0, 0, this.canvas.getElment().width, this.canvas.getElment().height);
-        var ball_list = this.ballGenerator.getAll();
-        for (var _i = 0, ball_list_2 = ball_list; _i < ball_list_2.length; _i++) {
-            var ball = ball_list_2[_i];
+        var ballList = this.ballGenerator.getAll();
+        for (var _i = 0, ballList_2 = ballList; _i < ballList_2.length; _i++) {
+            var ball = ballList_2[_i];
             ball.draw();
-            ball.move(ball_list);
+            ball.move(ballList);
         }
         requestAnimationFrame(this.start.bind(this));
     };
@@ -110,11 +110,11 @@ var BallGenerator = /** @class */ (function () {
                 if (i != ball_1["idx"]) {
                     var distancX = Math.pow(x - ball_1["x"], 2);
                     var distancY = Math.pow(y - ball_1["y"], 2);
-                    var ball_obj = {
+                    var ballObj = {
                         MoveBetween: Math.sqrt(distancX + distancY),
                         Between: size + ball_1["size"]
                     };
-                    if (ball_obj.MoveBetween <= ball_obj.Between) {
+                    if (ballObj.MoveBetween <= ballObj.Between) {
                         x = this.getRandomX(size);
                         y = this.getRandomY(size);
                     }

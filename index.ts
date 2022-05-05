@@ -23,7 +23,7 @@ class Canvas {
 // Ball
 interface Loopable {
     draw(): void;
-    move(ball_list: Ball[]): void;
+    move(ballList: Ball[]): void;
 }
 
 
@@ -67,7 +67,7 @@ class Ball implements Loopable {
     }
 
     // 볼 움직임
-    public move(ball_list:Ball[]): void {
+    public move(ballList:Ball[]): void {
         // 캔버스 벽에 부딪혔을 때 로직 Start
         if((this.x + this.size) > this.canvas.getElment().width || (this.x + this.velX) < this.size) {
             this.velX = -(this.velX);
@@ -80,18 +80,18 @@ class Ball implements Loopable {
         // 캔버스 벽에 부딪혔을 때 로직 End
 
         // 다른 공과 부딪혔을 때 로직 Start
-        for(let ball of ball_list){
+        for(let ball of ballList){
             if(this.idx != ball.idx){
                 let distancX:number = Math.pow(this.x-ball.x,2);
                 let distancY:number = Math.pow(this.y-ball.y,2);
 
-                let move_obj = {
+                let moveObj = {
                     MoveBetween : Math.sqrt(distancX + distancY),
                     Between : this.size + ball.size
                 }
 
                 // 탄성출동 로직은 구현하지 못함.
-                if(move_obj.MoveBetween <= move_obj.Between){
+                if(moveObj.MoveBetween <= moveObj.Between){
                     let changeX = this.velX;
                     let changeY = this.velY;
                     
@@ -123,11 +123,11 @@ class Loop {
         this.canvas.getContext().fillStyle = "rgba(255,255,255,0.7)";
         this.canvas.getContext().fillRect(0,0, this.canvas.getElment().width, this.canvas.getElment().height);
 
-        let ball_list = this.ballGenerator.getAll();
+        let ballList = this.ballGenerator.getAll();
 
-        for(let ball of ball_list) {
+        for(let ball of ballList) {
             ball.draw();
-            ball.move(ball_list);
+            ball.move(ballList);
         }
 
         requestAnimationFrame(this.start.bind(this));
@@ -160,12 +160,12 @@ class BallGenerator {
                     let distancX:number = Math.pow(x-ball["x"],2);
                     let distancY:number = Math.pow(y-ball["y"],2);
 
-                    let ball_obj = {
+                    let ballObj = {
                         MoveBetween : Math.sqrt(distancX + distancY),
                         Between : size + ball["size"]
                     }
                     
-                    if(ball_obj.MoveBetween <= ball_obj.Between){
+                    if(ballObj.MoveBetween <= ballObj.Between){
                         x = this.getRandomX(size);
                         y = this.getRandomY(size);
                     }
