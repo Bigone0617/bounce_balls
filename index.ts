@@ -90,6 +90,7 @@ class Ball implements Loopable {
                     Between : this.size + ball.size
                 }
 
+                // 탄성출동 로직은 구현하지 못함.
                 if(move_obj.MoveBetween <= move_obj.Between){
                     let changeX = this.velX;
                     let changeY = this.velY;

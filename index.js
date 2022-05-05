@@ -55,6 +55,7 @@ var Ball = /** @class */ (function () {
                     MoveBetween: Math.sqrt(distancX + distancY),
                     Between: this.size + ball.size
                 };
+                // 탄성출동 로직은 구현하지 못함.
                 if (move_obj.MoveBetween <= move_obj.Between) {
                     var changeX = this.velX;
                     var changeY = this.velY;
