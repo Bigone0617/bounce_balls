@@ -7,7 +7,7 @@ var Canvas = /** @class */ (function () {
         this.canvas.height = document.body.getElementsByTagName("canvas")[0].clientHeight;
     }
     // 캔버스 엘리먼트 반환
-    Canvas.prototype.getEl = function () {
+    Canvas.prototype.getElment = function () {
         return this.canvas;
     };
     // 2D 엔더링 컨텍스트 반환
@@ -38,10 +38,10 @@ var Ball = /** @class */ (function () {
     // 볼 움직임
     Ball.prototype.move = function (ball_list) {
         // 캔버스 벽에 부딪혔을 때 로직 Start
-        if ((this.x + this.size) > this.canvas.getEl().width || (this.x + this.velX) < this.size) {
+        if ((this.x + this.size) > this.canvas.getElment().width || (this.x + this.velX) < this.size) {
             this.velX = -(this.velX);
         }
-        if ((this.y + this.size) > this.canvas.getEl().height || (this.y + this.velY) < this.size) {
+        if ((this.y + this.size) > this.canvas.getElment().height || (this.y + this.velY) < this.size) {
             this.velY = -(this.velY);
         }
         // 캔버스 벽에 부딪혔을 때 로직 End
@@ -79,7 +79,7 @@ var Loop = /** @class */ (function () {
     // 설정한 볼 갯수 만큼 반복문 돌면서 캔버스에 볼 그림
     Loop.prototype.start = function () {
         this.canvas.getContext().fillStyle = "rgba(255,255,255,0.7)";
-        this.canvas.getContext().fillRect(0, 0, this.canvas.getEl().width, this.canvas.getEl().height);
+        this.canvas.getContext().fillRect(0, 0, this.canvas.getElment().width, this.canvas.getElment().height);
         var ball_list = this.ballGenerator.getAll();
         for (var _i = 0, ball_list_2 = ball_list; _i < ball_list_2.length; _i++) {
             var ball = ball_list_2[_i];
@@ -145,11 +145,11 @@ var BallGenerator = /** @class */ (function () {
     };
     // 첫 X 좌표
     BallGenerator.prototype.getRandomX = function (size) {
-        return this.random(size, this.canvas.getEl().width - size);
+        return this.random(size, this.canvas.getElment().width - size);
     };
     // 첫 Y 좌표
     BallGenerator.prototype.getRandomY = function (size) {
-        return this.random(size, this.canvas.getEl().height - size);
+        return this.random(size, this.canvas.getElment().height - size);
     };
     // 최소값 최대값 사이의 랜던값 얻기
     BallGenerator.prototype.random = function (min, max) {
